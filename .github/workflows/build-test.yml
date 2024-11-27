@@ -1,0 +1,23 @@
+name: Build & Test
+
+on:
+  pull_request:
+    branches: [ "main" ] 
+    paths:
+      - csharp.xUnit/*
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.x
+    - name: Restore dependencies
+      run: dotnet restore ./csharp.xUnit/GildedRose.sln
+    - name: Build
+      run: dotnet build ./csharp.xUnit/GildedRose.sln --no-restore
+    - name: Test
+      run: dotnet test ./csharp.xUnit/GildedRose.sln --no-build --verbosity normal
