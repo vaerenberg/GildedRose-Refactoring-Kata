@@ -12,7 +12,7 @@ public class GildedRose
     }
 
     public void UpdateQuality()
-    {        
+    {
         for (var i = 0; i < Items.Count; i++)
         {
             var daylyDegradation = Items[i].Name.StartsWith("Conjured") ? 2 : 1;
