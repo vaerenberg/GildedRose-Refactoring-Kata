@@ -58,7 +58,7 @@ public static class ItemTypeExtensions
             ItemType.Aging => -1,
             ItemType.Conjured => 2,
             _ => throw new ArgumentOutOfRangeException(
-                    nameof(type), $"Degradation for ItemType {type} is udefined.")
+                    nameof(type), $"Degradation for ItemType {type} is undefined.")
         };
 
         if (sellIn < 0)
