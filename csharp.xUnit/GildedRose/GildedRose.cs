@@ -12,16 +12,18 @@ public class GildedRose
     }
 
     public void UpdateQuality()
-    {
+    {        
         for (var i = 0; i < Items.Count; i++)
         {
+            var daylyDegradation = Items[i].Name.StartsWith("Conjured") ? 2 : 1;
+
             if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
             {
                 if (Items[i].Quality > 0)
                 {
                     if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        Items[i].Quality = Items[i].Quality - 1;
+                        Items[i].Quality = Items[i].Quality - daylyDegradation;
                     }
                 }
             }

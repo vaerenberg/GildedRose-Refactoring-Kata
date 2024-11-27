@@ -1,17 +1,29 @@
 ﻿using Xunit;
-using System.Collections.Generic;
 using GildedRoseKata;
 
 namespace GildedRoseTests;
 
 public class GildedRoseTest
 {
-    [Fact]
-    public void foo()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(5)]
+    public void ConjuredItems_DegradeFaster(int days)
     {
-        IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = 0 } };
-        GildedRose app = new GildedRose(Items);
-        app.UpdateQuality();
-        Assert.Equal("fixme", Items[0].Name);
+        // Arrange
+        var initialQuality = 30;
+        var normal = new Item { Name = "Normal item", SellIn = 10, Quality = initialQuality };
+        var conjured = new Item { Name = "Conjured item", SellIn = 10, Quality = initialQuality };
+        var app = new GildedRose([normal, conjured]);
+
+        // Act
+        for (int i = 0; i < days; i++)
+        {
+            app.UpdateQuality();
+        }
+
+        // Assert
+        Assert.Equal(initialQuality - days, normal.Quality);
+        Assert.Equal(initialQuality - 2 * days, conjured.Quality);
     }
 }
