@@ -39,11 +39,6 @@ public static class ItemTypeExtensions
 {
     public static int Degrade(this ItemType type, int quality, int sellIn)
     {
-        if (type == ItemType.Legendary)
-        {
-            return quality;
-        }
-
         var degradation = type switch
         {
             ItemType.Normal => 1,
